@@ -57,12 +57,15 @@ public class resumeSrevice {
 		}).collect(Collectors.toList());
 
 		int colCount = headerCells.size();
-
+		System.out.println(colCount +" :colCount");
 		List<Map<String, String>> values = rowstream.get().skip(1).map(row -> {
+			System.out.println("0");
 			List<String> cellList = uploadstream.getStreams(row).map(cell -> {
 				if (cell.getCellType() == org.apache.poi.ss.usermodel.CellType.STRING) {
+					System.out.println("2"+cell);
 					return cell.getStringCellValue();
-				} else if (cell.getCellType() == org.apache.poi.ss.usermodel.CellType.NUMERIC
+				}
+				else if (cell.getCellType() == org.apache.poi.ss.usermodel.CellType.NUMERIC
 						|| cell.getCellType() == org.apache.poi.ss.usermodel.CellType.FORMULA) {
 					String strValue = String.valueOf(cell.getNumericCellValue());
 					if (DateUtil.isCellDateFormatted(cell)) {
@@ -70,10 +73,14 @@ public class resumeSrevice {
 						Date date = cell.getDateCellValue();
 						strValue = dt.format(date);
 					}
+					System.out.println("3"+cell);
 					return strValue;
 				} else if (cell.getCellType() == org.apache.poi.ss.usermodel.CellType.BLANK) {
+					System.out.println("4"+cell);
 					return "";
-				} else {
+				} 
+				else {
+					System.out.println("5"+cell);
 					return String.valueOf(cell.getBooleanCellValue());
 				}
 			}).collect(Collectors.toList());
@@ -82,13 +89,27 @@ public class resumeSrevice {
 		}).collect(Collectors.toList());
 		int valueLength = values.size();
 		for (int i = 0; i < valueLength; i++) {
-			String Status = values.get(i).get("Status");
-			String date = values.get(i).get("Date");
 			resumeModel obj = new resumeModel();
-			obj.setStatus(Status);
-			obj.setDate(date);
+//			obj.setDate(values.get(i).get("date"));
+//			obj.setStatus(values.get(i).get("Status"));
+			
+			obj.setJapanese(values.get(i).get("Japanese"));
+			obj.setContractDetails(values.get(i).get("Contract details"));
+			obj.setPositions(values.get(i).get("Positions"));
+			obj.setIndustry(values.get(i).get("Industry"));
+			obj.setJobDescription(values.get(i).get("Job Description"));
+			obj.setLanguage(values.get(i).get("Language"));
+			obj.setLocation(values.get(i).get("Location"));
+			obj.setMaximumSalary(values.get(i).get("Maximum Salary"));
+			obj.setMinimumSalary(values.get(i).get("Minimum Salary"));
+			obj.setPositionHNO(values.get(i).get("Position/HNO"));
+			obj.setPositionType(values.get(i).get("Position Type"));
+			obj.setRequirements(values.get(i).get("Requirements"));
+			obj.setResiding(values.get(i).get("Residing"));
+			obj.setSino(values.get(i).get("SI.NO"));
 			resRepo.saveAll(List.of(obj));
 		}
+		workbook.close();
 		return values;
 	}
 
