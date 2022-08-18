@@ -11,8 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import webrix.hr.pojo.OfferRequest;
+import webrix.hr.pojo.RejectedRequest;
+import webrix.hr.pojo.TrackerRequest;
 import webrix.hr.pojo.duplicationRequest;
 import webrix.hr.pojo.procesingRequest;
+import webrix.hr.service.OfferService;
+import webrix.hr.service.RejectedService;
+import webrix.hr.service.TrackerSrevice;
 import webrix.hr.service.duplicationService;
 import webrix.hr.service.processingService;
 import webrix.hr.service.userService;
@@ -31,6 +37,15 @@ public class adminControler {
 	@Autowired
 	processingService processService;
 
+	@Autowired
+	OfferService offerService;
+
+	@Autowired
+	RejectedService rejectedService;
+	
+	@Autowired
+	TrackerSrevice trackerService;
+	
 	@Autowired
 	webrix.hr.service.candidateService candidateService;
 
@@ -81,6 +96,41 @@ public class adminControler {
 	@GetMapping("/get-processing")
 	private ResponseEntity<Object> getAllProcessing() {
 		return processService.getAllProcessing();
+	}
+
+//	############ [ Offer ] ################
+
+	@PostMapping("/update-offer")
+	public ResponseEntity<Object> updateOffer(@RequestBody OfferRequest Offer) throws Exception {
+		return offerService.updateOffer(Offer);
+	}
+
+	@GetMapping("/get-offer")
+	private ResponseEntity<Object> getAllOffer() {
+		return offerService.getAllOffer();
+	}
+//	############ [ REJECTED ] ################
+
+	@PostMapping("/update-rejected")
+	public ResponseEntity<Object> updateRejected(@RequestBody RejectedRequest rejected) throws Exception {
+		return rejectedService.updateRejected(rejected);
+	}
+
+	@GetMapping("/get-rejected")
+	private ResponseEntity<Object> getAllRejected() {
+		return rejectedService.getAllRejected();
+	}
+	
+//	############ [ Tracker ] ################
+
+	@PostMapping("/update-tracker")
+	public ResponseEntity<Object> updateTracker(@RequestBody TrackerRequest tracker) throws Exception {
+		return trackerService.updateTracker(tracker);
+	}
+
+	@GetMapping("/get-tracker")
+	private ResponseEntity<Object> getAllTracker() {
+		return trackerService.getAllTracker();
 	}
 
 }

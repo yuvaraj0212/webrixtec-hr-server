@@ -17,7 +17,6 @@ import javax.validation.constraints.NotEmpty;
 
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Entity
 @Table(name = "candidate_tbl")
 public class candidate {
@@ -30,7 +29,6 @@ public class candidate {
 	private String cemail;
 	@NotEmpty(message = "candidate phone empty")
 	private String cphone;
-	
 	private Date cdob;
 	@NotEmpty(message = "candidate job Id empty")
 	private String jobID;
@@ -44,17 +42,37 @@ public class candidate {
 	@NotEmpty(message = "candidate by empty")
 	private String createdBy;
 	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "trcaker_id", referencedColumnName = "id")
+	private Tracker tracker;
+
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id", nullable = false, referencedColumnName = "id")
 	private userModel user;
-	
-	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "duplication_id", referencedColumnName = "id")
 	private Duplication duplication;
-	
-	@OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "processing_id", referencedColumnName = "id")
 	private ProcessingEntity processing;
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "offer_id", referencedColumnName = "id")
+	private Offer offer;
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "rejected_id", referencedColumnName = "id")
+	private Rejected rejected;
+	
+	public Rejected getRejected() {
+		return rejected;
+	}
+
+	public void setRejected(Rejected rejected) {
+		this.rejected = rejected;
+	}
 
 	public long getId() {
 		return id;
@@ -159,9 +177,7 @@ public class candidate {
 	public void setUser(userModel user) {
 		this.user = user;
 	}
-	
-	
-	
+
 	public Duplication getDuplication() {
 		return duplication;
 	}
@@ -169,15 +185,29 @@ public class candidate {
 	public void setDuplication(Duplication duplication) {
 		this.duplication = duplication;
 	}
-	
-	
-	
+
 	public ProcessingEntity getProcessing() {
 		return processing;
 	}
 
 	public void setProcessing(ProcessingEntity processing) {
 		this.processing = processing;
+	}
+
+	public Offer getOffer() {
+		return offer;
+	}
+
+	public void setOffer(Offer offer) {
+		this.offer = offer;
+	}
+	
+	public Tracker getTracker() {
+		return tracker;
+	}
+
+	public void setTracker(Tracker tracker) {
+		this.tracker = tracker;
 	}
 
 	public candidate() {

@@ -62,6 +62,14 @@ public class userService extends ExceptionController {
 		userObj.setEmail(user.getEmail());
 		userObj.setCreateDate(new Date());
 		userObj.setName(user.getName());
+		userObj.setAltEmail(user.getAltEmail());
+		userObj.setAltPhone(user.getAltPhone());
+		userObj.setCeo(user.getCeo());
+		userObj.setCity(user.getCity());
+		userObj.setCountry(user.getCountry());
+		userObj.setNdaDate(user.getNdaDate());
+		userObj.setRepName(user.getRepName());
+		userObj.setPhone(user.getPhone());
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encode = encoder.encode(user.getPassword());
 		userObj.setPassword(encode);

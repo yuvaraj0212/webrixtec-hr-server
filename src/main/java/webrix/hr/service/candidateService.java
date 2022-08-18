@@ -14,7 +14,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import webrix.hr.entity.Duplication;
+import webrix.hr.entity.Offer;
 import webrix.hr.entity.ProcessingEntity;
+import webrix.hr.entity.Rejected;
+import webrix.hr.entity.Tracker;
 import webrix.hr.entity.candidate;
 import webrix.hr.entity.userModel;
 import webrix.hr.exceptioControler.ExceptionController;
@@ -73,7 +76,15 @@ public class candidateService extends ExceptionController {
 //		###### [ Processing entity ] #########
 		ProcessingEntity process = new ProcessingEntity();
 		obj.setProcessing(process);
-
+//		###### [ Offer entity ] #########
+		Offer offer = new Offer();
+		obj.setOffer(offer);
+//		###### [ Rejcted entity ] #########
+		Rejected reject = new Rejected();
+		obj.setRejected(reject);
+//		###### [ trecker entity ] #########
+		Tracker tracker = new Tracker();
+		obj.setTracker(tracker);
 		candidRepo.save(obj);
 		return response(HttpStatus.OK.value(), "Candidate Created SecssusFully", obj);
 	}
