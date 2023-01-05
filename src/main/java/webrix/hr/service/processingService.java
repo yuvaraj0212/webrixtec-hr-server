@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import webrix.hr.entity.ProcessingEntity;
 import webrix.hr.exceptioControler.ExceptionController;
 import webrix.hr.pojo.procesingRequest;
+import webrix.hr.repo.candidateRepo;
 import webrix.hr.repo.processingRepo;
 
 @Service
@@ -18,7 +19,7 @@ public class processingService extends ExceptionController {
 
 	@Autowired
 	processingRepo processRepo;
-
+	
 	public ResponseEntity<Object> updateProcessing(procesingRequest process) {
 		ProcessingEntity obj = processRepo.findById(process.getProcess_id()).get();
 		if (obj == null) {
@@ -28,6 +29,7 @@ public class processingService extends ExceptionController {
 		obj.setStartDate(new Date());
 		obj.setBudjet(process.getBudjet());
 		obj.setTechnolgy(process.getTechnolgy());
+		obj.setProcesingStatus(process.getProcesingStatus());
 		processRepo.save(obj);
 		return response(HttpStatus.OK.value(), "Procesing Updated SecssusFully", obj);
 

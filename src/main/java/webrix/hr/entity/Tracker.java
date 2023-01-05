@@ -18,6 +18,7 @@ public class Tracker {
 	private String track_msg;
 	private Date createDate;
 
+
 	public long getId() {
 		return id;
 	}

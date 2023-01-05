@@ -5,13 +5,15 @@ import javax.validation.constraints.NotEmpty;
 
 
 public class OfferRequest {
+
+	@NotEmpty(message = "offer id is empty")
 	private long offer_id;
 	@NotEmpty(message = "annual CTC id is empty")
 	private String annualCTC;
 	private String joiningDate;
 	private String offerDate;
-	@NotEmpty(message = "offer message id is empty")
 	private String offer_msg;
+	private String clientRef;
 	
 	public long getOffer_id() {
 		return offer_id;
@@ -43,6 +45,12 @@ public class OfferRequest {
 	}
 	public void setOffer_msg(String offer_msg) {
 		this.offer_msg = offer_msg;
+	}
+	public String getClientRef() {
+		return clientRef;
+	}
+	public void setClientRef(String clientRef) {
+		this.clientRef = clientRef;
 	}
 
 	

@@ -13,6 +13,8 @@ public class procesingRequest {
 	private Date startDate;
 	@NotEmpty(message = "budjet field empty")
 	private String budjet;
+	@NotEmpty(message = "procesingStatus field empty")
+	private String procesingStatus;
 
 	public String getTechnolgy() {
 		return technolgy;
@@ -45,5 +47,14 @@ public class procesingRequest {
 	public void setProcess_id(long process_id) {
 		this.process_id = process_id;
 	}
+
+	public String getProcesingStatus() {
+		return procesingStatus;
+	}
+
+	public void setProcesingStatus(String procesingStatus) {
+		this.procesingStatus = procesingStatus;
+	}
+	
 
 }

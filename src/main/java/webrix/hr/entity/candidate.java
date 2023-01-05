@@ -34,6 +34,8 @@ public class candidate {
 	private String jobID;
 	private String imagUrl;
 	private String fileName;
+	private String candidateStatus;
+	private String candidateStatusMsg;
 	@Transient
 	private MultipartFile mfile;
 	@NotEmpty(message = "candidate cmsg empty")
@@ -65,7 +67,9 @@ public class candidate {
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = "rejected_id", referencedColumnName = "id")
 	private Rejected rejected;
-	
+		
+
+
 	public Rejected getRejected() {
 		return rejected;
 	}
@@ -153,6 +157,15 @@ public class candidate {
 	public void setCreatedBy(String createdBy) {
 		this.createdBy = createdBy;
 	}
+	
+
+	public String getCandidateStatus() {
+		return candidateStatus;
+	}
+
+	public void setCandidateStatus(String candidateStatus) {
+		this.candidateStatus = candidateStatus;
+	}
 
 	public Date getCdob() {
 		return cdob;
@@ -208,6 +221,14 @@ public class candidate {
 
 	public void setTracker(Tracker tracker) {
 		this.tracker = tracker;
+	}
+
+	public String getCandidateStatusMsg() {
+		return candidateStatusMsg;
+	}
+
+	public void setCandidateStatusMsg(String candidateStatusMsg) {
+		this.candidateStatusMsg = candidateStatusMsg;
 	}
 
 	public candidate() {

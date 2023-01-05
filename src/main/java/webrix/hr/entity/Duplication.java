@@ -17,6 +17,15 @@ public class Duplication {
 	private String duplication_status;
 	private String duplication_msg;
 	private Date createDate;
+	private Date entryDate;
+	
+	public Date getEntryDate() {
+		return entryDate;
+	}
+
+	public void setEntryDate(Date entryDate) {
+		this.entryDate = entryDate;
+	}
 
 	public long getId() {
 		return id;

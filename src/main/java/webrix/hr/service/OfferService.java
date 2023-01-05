@@ -9,9 +9,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import webrix.hr.entity.Offer;
+import webrix.hr.entity.candidate;
 import webrix.hr.exceptioControler.ExceptionController;
 import webrix.hr.pojo.OfferRequest;
 import webrix.hr.repo.OfferRepo;
+import webrix.hr.repo.candidateRepo;
+import webrix.hr.repo.userRepo;
 
 @Service
 public class OfferService extends ExceptionController {
@@ -29,6 +32,8 @@ public class OfferService extends ExceptionController {
 		obj.setJoiningDate(offer.getJoiningDate());
 		obj.setOfferDate(offer.getOfferDate());
 		obj.setOffer_msg(offer.getOffer_msg());
+		obj.setClientRef(offer.getClientRef());
+		
 		offerRepo.save(obj);
 		return response(HttpStatus.OK.value(), "Offer Updated SecssusFully", obj);
 

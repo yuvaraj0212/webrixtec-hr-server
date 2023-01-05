@@ -17,6 +17,7 @@ public class Rejected {
 	private String rof;
 	private String rejected_msg;
 	private Date createDate;
+	
 
 	public long getId() {
 		return id;
@@ -49,6 +50,5 @@ public class Rejected {
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
 	}
-
 
 }

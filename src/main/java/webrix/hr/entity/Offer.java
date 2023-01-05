@@ -18,7 +18,17 @@ public class Offer {
 	private String joiningDate;
 	private String offerDate;
 	private String offer_msg;
+	private String clientRef;
 	private Date createDate;
+	private Date entryDate;
+
+	public Date getEntryDate() {
+		return entryDate;
+	}
+
+	public void setEntryDate(Date entryDate) {
+		this.entryDate = entryDate;
+	}
 
 	public long getId() {
 		return id;
@@ -27,9 +37,6 @@ public class Offer {
 	public void setId(long id) {
 		this.id = id;
 	}
-
-	
-
 
 	public String getAnnualCTC() {
 		return annualCTC;
@@ -69,6 +76,14 @@ public class Offer {
 
 	public void setCreateDate(Date createDate) {
 		this.createDate = createDate;
+	}
+
+	public String getClientRef() {
+		return clientRef;
+	}
+
+	public void setClientRef(String clientRef) {
+		this.clientRef = clientRef;
 	}
 
 	public Offer() {

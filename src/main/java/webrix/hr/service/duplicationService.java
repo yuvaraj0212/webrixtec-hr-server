@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import webrix.hr.entity.Duplication;
+import webrix.hr.entity.candidate;
 import webrix.hr.exceptioControler.ExceptionController;
 import webrix.hr.pojo.duplicationRequest;
 import webrix.hr.repo.DuplicationRepo;
+import webrix.hr.repo.candidateRepo;
 
 @Service
 public class duplicationService extends ExceptionController {

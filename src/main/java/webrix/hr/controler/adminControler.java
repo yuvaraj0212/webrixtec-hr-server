@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import webrix.hr.pojo.OfferRequest;
 import webrix.hr.pojo.RejectedRequest;
 import webrix.hr.pojo.TrackerRequest;
+import webrix.hr.pojo.YetToStartRequest;
 import webrix.hr.pojo.duplicationRequest;
 import webrix.hr.pojo.procesingRequest;
 import webrix.hr.service.OfferService;
@@ -22,6 +23,7 @@ import webrix.hr.service.TrackerSrevice;
 import webrix.hr.service.duplicationService;
 import webrix.hr.service.processingService;
 import webrix.hr.service.userService;
+import webrix.hr.service.yetToStartService;
 
 @RestController
 @RequestMapping("/admin")
@@ -33,7 +35,10 @@ public class adminControler {
 
 	@Autowired
 	duplicationService dupService;
-
+	
+	@Autowired
+	yetToStartService yettostartService;
+	
 	@Autowired
 	processingService processService;
 
@@ -67,11 +72,21 @@ public class adminControler {
 		return userService.getDelUser(Id);
 	}
 
+//	############ [ yet to start ] ################
+	@PostMapping("/update-yettostart")
+	public ResponseEntity<Object> updateyettostart(@RequestBody YetToStartRequest yettostart) throws Exception {
+		return yettostartService.updateyettostart(yettostart);
+	}
 //	############ [ candidates details ] ################
 
 	@GetMapping("/get-candidates")
 	private ResponseEntity<Object> getAllcandidates() {
 		return candidateService.getAllcandidates();
+	}
+	
+	@DeleteMapping("/del/candidates")
+	private ResponseEntity<Object> deletecandidates(@RequestParam(name = "Id") Long Id) {
+		return candidateService.getDelcandidates(Id);
 	}
 
 //	############ [ duplication ] ################
